@@ -1,0 +1,49 @@
+{{#if tasks}}
+<table class="table table-bordered table-hover " style="background-color: #3e96bedc;">
+    <thead>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Working</th>
+            <th scope="col">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tasks}}
+        <tr>
+            <th>{{@index}}</th>
+            <td><strong>{{title}}</strong></td>
+            <td>{{description}}</td>
+            {{#if group}}
+            <td>individual<img src="/img/ind.png" alt="" width="30" height="30"></td>
+            {{else}}
+            <td>Equipo <img src="/img/equipo.png" alt="" width="30" height="30"></td>
+            {{/if}}
+            <td>
+                {{#if done}}
+                {{!apertura del if}}
+                <a class="btn btn-success" href="/tasks/{{_id}}/toggleDone">
+                <img src="/img/done.png" alt="" width="20" height="20"></a>
+                {{else}}
+                <a class="btn btn-secondary" href="/tasks/{{_id}}/toggleDone">
+                <img src="/img/undone.svg" alt="" width="20" height="20"></a>
+                {{/if}}
+                {{!cierre del if}}
+                <a class="btn btn-danger" href="/tasks/{{_id}}/delete">
+                <img src="/img/trash.svg" alt="" width="20" height="20"></a>
+                <a class="btn btn-info" href="/tasks/{{_id}}/edit">
+                <img src="/img/editar.png" alt="" width="20" height="20"></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<div>
+    <div>
+        <h1>No tasks</h1>
+        <img src="/img/empty.png" class="w-25" />
+    </div>
+</div>
+{{/if}}
